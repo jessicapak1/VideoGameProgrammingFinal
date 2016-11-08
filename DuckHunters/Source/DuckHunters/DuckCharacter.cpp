@@ -2,7 +2,7 @@
 
 #include "DuckHunters.h"
 #include "DuckCharacter.h"
-
+#include <iostream>
 
 // Sets default values
 ADuckCharacter::ADuckCharacter()
@@ -12,6 +12,7 @@ ADuckCharacter::ADuckCharacter()
 
 	mDuckHealth = 20.0f;
 	mDuckDamage = 0.0f;
+	std::cout << "inside duck constructor " << std::endl;
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +35,7 @@ void ADuckCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompo
 	Super::SetupPlayerInputComponent(InputComponent);
 
 }
-
+/*
 float ADuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 {
 	float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
@@ -53,7 +54,7 @@ float ADuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent,
 		}
 	}
 	return ActualDamage;
-}
+}*/
 
 void ADuckCharacter::DestroyDuck()
 {

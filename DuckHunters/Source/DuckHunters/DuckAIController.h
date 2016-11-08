@@ -16,7 +16,7 @@ public:
 
 	ADuckAIController();
 	void BeginPlay() override;
-	void Tick(float deltaTime) override;
+	virtual void Tick(float deltaTime) override;
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
 
 

@@ -25,7 +25,7 @@ public:
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	void DestroyDuck();
-private:
+protected:
 	UPROPERTY(EditDefaultsOnly)
 		class UAnimMontage* AttackAnim;
 	UPROPERTY(EditDefaultsOnly)

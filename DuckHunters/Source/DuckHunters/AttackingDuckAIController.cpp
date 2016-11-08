@@ -3,11 +3,12 @@
 #include "DuckHunters.h"
 #include "AttackingDuckAIController.h"
 #include "AttackingDuckCharacter.h"
-
+#include <iostream>
 
 AAttackingDuckAIController::AAttackingDuckAIController()
 {
 	mRange = 150.0f;
+	std::cout << "inside attacking duck AI " << std::endl;
 }
 
 void AAttackingDuckAIController::BeginPlay()

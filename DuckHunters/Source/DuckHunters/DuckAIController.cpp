@@ -2,10 +2,11 @@
 
 #include "DuckHunters.h"
 #include "DuckAIController.h"
+#include <iostream>
 
 ADuckAIController::ADuckAIController()
 {
-
+	std::cout << "inside duck AI " << std::endl;
 }
 
 void ADuckAIController::BeginPlay()

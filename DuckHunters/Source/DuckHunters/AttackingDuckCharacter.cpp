@@ -4,28 +4,15 @@
 #include "DuckHuntersCharacter.h"
 #include "AttackingDuckCharacter.h"
 #include "AttackingDuckAIController.h"
+#include <iostream>
 
 AAttackingDuckCharacter::AAttackingDuckCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	AIControllerClass = AAttackingDuckAIController::StaticClass();
-	mAttackingDuckHealth = 40.0f;
-	mAttackingDuckDamage = 10.0f;
-}
-
-void AAttackingDuckCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AAttackingDuckCharacter::Tick(float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-}
-
-void AAttackingDuckCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
+	mDuckHealth = 40.0f;
+	mDuckDamage = 10.0f;
+	std::cout << "inside attack constructor " << std::endl;
 }
 
 float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
@@ -34,15 +21,15 @@ float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Dam
 
 	if (ActualDamage > 0.0f)
 	{
-		mAttackingDuckHealth -= ActualDamage;
-		if (mAttackingDuckHealth <= 0.0f)
+		mDuckHealth -= ActualDamage;
+		if (mDuckHealth <= 0.0f)
 		{
 			// We're dead, don't allow further damage
 			bCanBeDamaged = false;
 			// TODO: Process death
 			StopAttack();
-			float duration = PlayAnimMontage(AttackingDeathAnim);
-			GetWorldTimerManager().SetTimer(mAttackingDeathTimer, this, &AAttackingDuckCharacter::DestroyDuck, duration - 0.25f, true);
+			float duration = PlayAnimMontage(DeathAnim);
+			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckCharacter::DestroyDuck, duration - 0.25f, true);
 			GetController()->UnPossess();
 		}
 	}
@@ -51,26 +38,22 @@ float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Dam
 
 void AAttackingDuckCharacter::StartAttack()
 {
-	float duration = PlayAnimMontage(AttackingAttackAnim);
-	GetWorldTimerManager().SetTimer(mAttackingAttackTimer, this, &AAttackingDuckCharacter::AttackPlayer, duration, true);
+	float duration = PlayAnimMontage(AttackAnim);
+	GetWorldTimerManager().SetTimer(mAttackTimer, this, &AAttackingDuckCharacter::AttackPlayer, duration, true);
 }
 
 void AAttackingDuckCharacter::StopAttack()
 {
-	StopAnimMontage(AttackingAttackAnim);
-	GetWorldTimerManager().ClearTimer(mAttackingAttackTimer);
+	StopAnimMontage(AttackAnim);
+	GetWorldTimerManager().ClearTimer(mAttackTimer);
 }
 
-void AAttackingDuckCharacter::DestroyDuck()
-{
-	this->Destroy();
-}
 
 void AAttackingDuckCharacter::AttackPlayer()
 {
 	ADuckHuntersCharacter* player = Cast<ADuckHuntersCharacter>(UGameplayStatics::GetPlayerPawn(this, 0)); // player
 	if (player != nullptr)
 	{
-		player->TakeDamage(mAttackingDuckDamage, FDamageEvent(), GetInstigatorController(), this);
+		player->TakeDamage(mDuckDamage, FDamageEvent(), GetInstigatorController(), this);
 	}
 }

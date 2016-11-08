@@ -8,31 +8,26 @@ AStationaryDuckCharacter::AStationaryDuckCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	AIControllerClass = AStationaryDuckAIController::StaticClass();
-	mStationaryDuckHealth = 20.0f;
-	mStationaryDuckDamage = 0.0f;
-}
-
-void AStationaryDuckCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AStationaryDuckCharacter::Tick(float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-}
-
-void AStationaryDuckCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
+	mDuckHealth = 20.0f;
+	mDuckDamage = 0.0f;
 }
 
 float AStationaryDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 {
-	return 0.0f;
-}
+	float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
-void AStationaryDuckCharacter::DestroyDuck()
-{
-	this->Destroy();
+	if (ActualDamage > 0.0f)
+	{
+		mDuckHealth -= ActualDamage;
+		if (mDuckHealth <= 0.0f)
+		{
+			// We're dead, don't allow further damage
+			bCanBeDamaged = false;
+			// TODO: Process death
+			float duration = PlayAnimMontage(DeathAnim);
+			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckCharacter::DestroyDuck, duration - 0.25f, true);
+			GetController()->UnPossess();
+		}
+	}
+	return ActualDamage;
 }
