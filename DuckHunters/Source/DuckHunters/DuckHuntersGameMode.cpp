@@ -15,3 +15,9 @@ ADuckHuntersGameMode::ADuckHuntersGameMode()
 	// use our custom HUD class
 	HUDClass = ADuckHuntersHUD::StaticClass();
 }
+
+void ADuckHuntersGameMode::BeginPlay() {
+	Super::BeginPlay();
+	
+	mScore = 0;
+}

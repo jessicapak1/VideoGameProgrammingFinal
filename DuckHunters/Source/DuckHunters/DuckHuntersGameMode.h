@@ -8,8 +8,13 @@ class ADuckHuntersGameMode : public AGameMode
 {
 	GENERATED_BODY()
 
+		void BeginPlay() override;
 public:
 	ADuckHuntersGameMode();
+
+	int mScore;
+	float mTimer;
+
 };
 
 
