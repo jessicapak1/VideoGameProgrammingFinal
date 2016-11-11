@@ -15,20 +15,9 @@ class DUCKHUNTERS_API AFlyingDuckAIController : public ADuckAIController
 	
 public:
 	AFlyingDuckAIController();
-	void BeginPlay() override;
-	void Tick(float deltaTime) override;
-	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
 
-	void FlyAround();
 private:
-	enum class FlyingDuckState
-	{
-		Start,
-		Fly,
-		Dead
-	};
-	FlyingDuckState mCurrentState;
-	float mRange;
+
 	
 	
 };

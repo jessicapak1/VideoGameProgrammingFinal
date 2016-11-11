@@ -6,21 +6,6 @@
 
 AStationaryDuckAIController::AStationaryDuckAIController()
 {
-
+	mRange = 90.0f;
 }
 
-void AStationaryDuckAIController::BeginPlay()
-{
-}
-
-void AStationaryDuckAIController::Tick(float deltaTime)
-{
-}
-
-void AStationaryDuckAIController::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result)
-{
-}
-
-void AStationaryDuckAIController::Appear()
-{
-}
