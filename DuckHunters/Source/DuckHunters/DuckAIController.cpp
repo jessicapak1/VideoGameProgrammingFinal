@@ -24,7 +24,7 @@ void ADuckAIController::Tick(float deltaTime)
 	{
 		
 	}
-	else if (mCurrentState == DuckState::Appear)
+	else if (mCurrentState == DuckState::DoAction)
 	{
 		APawn* pawn = UGameplayStatics::GetPlayerPawn(this, 0); // player
 		ADuckCharacter* duckPawn = Cast<ADuckCharacter>(GetPawn()); // dwarf
@@ -37,7 +37,7 @@ void ADuckAIController::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingRe
 {
 	if (Result == EPathFollowingResult::Success)
 	{
-		mCurrentState = DuckState::Appear;
+		mCurrentState = DuckState::DoAction;
 		ADuckCharacter* duckPawn = Cast<ADuckCharacter>(GetPawn()); // dwarf
 		if (duckPawn != nullptr)
 		{
@@ -47,4 +47,7 @@ void ADuckAIController::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingRe
 }
 
 
+void ADuckAIController::DoAction()
+{
 
+}

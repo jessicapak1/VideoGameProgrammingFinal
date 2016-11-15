@@ -18,13 +18,13 @@ public:
 	void BeginPlay() override;
 	virtual void Tick(float deltaTime) override;
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
+	virtual void DoAction();
 
-
-private:
+protected:
 	enum class DuckState
 	{
 		Start,
-		Appear,
+		DoAction,
 		Dead
 	};
 	DuckState mCurrentState;

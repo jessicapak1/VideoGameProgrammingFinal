@@ -9,3 +9,7 @@ AStationaryDuckAIController::AStationaryDuckAIController()
 	mRange = 90.0f;
 }
 
+void AStationaryDuckAIController::DoAction()
+{
+
+}

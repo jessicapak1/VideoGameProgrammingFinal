@@ -13,6 +13,7 @@ AAttackingDuckCharacter::AAttackingDuckCharacter()
 	mDuckHealth = 40.0f;
 	mDuckDamage = 10.0f;
 	std::cout << "inside attack constructor " << std::endl;
+
 }
 
 float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)

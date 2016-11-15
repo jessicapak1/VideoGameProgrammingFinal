@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "DuckHunters.h"
+#include "Engine.h"
 #include "DuckCharacter.h"
 #include <iostream>
 
@@ -20,6 +21,20 @@ void ADuckCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	TArray<UStaticMeshComponent*> Components;
+	this->GetComponents<UStaticMeshComponent>(Components);
+	mStaticMeshComponent = Components[0];
+	mStaticMesh = mStaticMeshComponent->StaticMesh;
+	mStaticMeshComponent->bGenerateOverlapEvents = true;
+	mStaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ADuckCharacter::OnBeginOverlap);
+	//mStaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ADuckCharacter::OnBeginOverlap);
+}
+
+void ADuckCharacter::OnBeginOverlap(class UPrimitiveComponent* thisComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Red, "HIT");
+	OtherActor->TakeDamage(5, FDamageEvent(), GetInstigatorController(), this);
+		
 }
 
 // Called every frame
