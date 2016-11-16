@@ -23,6 +23,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	void DestroyDuck();
 protected:
@@ -36,5 +37,4 @@ protected:
 		float mDuckDamage;
 	FTimerHandle mDeathTimer;
 
-	
 };

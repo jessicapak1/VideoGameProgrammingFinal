@@ -19,6 +19,7 @@ public:
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
 
 	void ChasePlayer();
+	//void DoAction() override;
 private:
 	enum class AttackingDuckState
 	{

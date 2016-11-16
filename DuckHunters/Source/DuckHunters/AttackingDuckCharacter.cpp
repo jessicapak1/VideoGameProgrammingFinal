@@ -5,6 +5,7 @@
 #include "AttackingDuckCharacter.h"
 #include "AttackingDuckAIController.h"
 #include <iostream>
+#include "Engine.h"
 
 AAttackingDuckCharacter::AAttackingDuckCharacter()
 {
@@ -13,7 +14,14 @@ AAttackingDuckCharacter::AAttackingDuckCharacter()
 	mDuckHealth = 40.0f;
 	mDuckDamage = 10.0f;
 	std::cout << "inside attack constructor " << std::endl;
+
 }
+
+void AAttackingDuckCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 
 float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 {

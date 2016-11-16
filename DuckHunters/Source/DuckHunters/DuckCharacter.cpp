@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "DuckHunters.h"
+#include "Engine.h"
 #include "DuckCharacter.h"
 #include <iostream>
 
@@ -21,6 +22,7 @@ void ADuckCharacter::BeginPlay()
 	Super::BeginPlay();
 	
 }
+
 
 // Called every frame
 void ADuckCharacter::Tick( float DeltaTime )

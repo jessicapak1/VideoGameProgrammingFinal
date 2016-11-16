@@ -21,8 +21,11 @@ public:
 	void StopAttack();
 	void AttackPlayer();
     void DestroyDuck();
+	void BeginPlay() override;
 	
 private:
 
 	FTimerHandle mAttackTimer;
+	USkeletalMesh* mSkeletalMesh;
+	USkeletalMeshComponent* mSkeletalMeshComponent;
 };

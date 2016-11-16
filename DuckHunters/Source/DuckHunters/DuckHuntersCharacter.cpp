@@ -2,11 +2,15 @@
 
 #include "DuckHunters.h"
 #include "DuckHuntersCharacter.h"
+
 #include "DuckHuntersProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/InputSettings.h"
 #include "Kismet/HeadMountedDisplayFunctionLibrary.h"
 #include "MotionControllerComponent.h"
+#include "Sound/SoundCue.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "DuckCharacter.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -17,6 +21,11 @@ ADuckHuntersCharacter::ADuckHuntersCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
+
+	FireRate = 0.1f;
+
+	WeaponRange = 10000.0f;
+
 
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
@@ -101,6 +110,17 @@ void ADuckHuntersCharacter::BeginPlay()
 	}
 }
 
+UAudioComponent * ADuckHuntersCharacter::PlayWeaponSound(USoundCue * Sound)
+{
+	UAudioComponent* AC = NULL;
+	if (Sound)
+	{
+		AC = UGameplayStatics::SpawnSoundAttached(Sound, RootComponent);
+	}
+	return AC;
+
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -115,10 +135,15 @@ void ADuckHuntersCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	//InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ADuckHuntersCharacter::TouchStarted);
 	if (EnableTouchscreenMovement(PlayerInputComponent) == false)
 	{
-		PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ADuckHuntersCharacter::OnFire);
+		PlayerInputComponent->BindAction("Firee", IE_Pressed, this, &ADuckHuntersCharacter::OnFire);
 	}
 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ADuckHuntersCharacter::OnResetVR);
+
+
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ADuckHuntersCharacter::OnStartFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ADuckHuntersCharacter::OnStopFire); 
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ADuckHuntersCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ADuckHuntersCharacter::MoveRight);
@@ -132,9 +157,69 @@ void ADuckHuntersCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ADuckHuntersCharacter::LookUpAtRate);
 }
 
+void ADuckHuntersCharacter::OnStartFire()
+{
+	Muzzle = UGameplayStatics::SpawnEmitterAttached(MuzzleFx, FP_Gun, TEXT("MuzzleFlashSocket"));
+
+	FireAC = PlayWeaponSound(FireLoopSound);
+
+	GetWorldTimerManager().SetTimer(WeaponTimer, this, &ADuckHuntersCharacter::WeaponTrace, FireRate, true);
+}
+
+void ADuckHuntersCharacter::OnStopFire()
+{
+	if (FireAC > 0)
+	{
+		Muzzle->DeactivateSystem();
+
+		FireAC->Stop();
+		FireAC = PlayWeaponSound(FireFinishSound);
+
+		GetWorldTimerManager().ClearTimer(WeaponTimer);
+	}
+}
+
+void ADuckHuntersCharacter::WeaponTrace() 
+{
+	static FName WeaponFireTag = FName(TEXT("WeaponTrace"));
+	static FName MuzzleSocket = FName(TEXT("MuzzleFlashSocket"));
+
+	// Start from the muzzle's position
+	FVector StartPos =Mesh1P->GetSocketLocation(MuzzleSocket);
+	// Get forward vector of MyPawn
+	FVector Forward = GetActorForwardVector();
+
+
+	// Calculate end position
+	FVector EndPos = StartPos + (Forward *WeaponRange);
+
+	// Perform trace to retrieve hit info
+	FCollisionQueryParams TraceParams(WeaponFireTag, true, Instigator);
+	TraceParams.bTraceAsyncScene = true;
+	TraceParams.bReturnPhysicalMaterial = true;
+	// This fires the ray and checks against all objects w/ collision
+	FHitResult Hit(ForceInit);
+	GetWorld()->LineTraceSingleByObjectType(Hit, StartPos, EndPos, FCollisionObjectQueryParams::AllObjects, TraceParams);
+	// Did this hit anything?
+	if (Hit.bBlockingHit)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, HitEffect, Hit.ImpactPoint);
+
+
+		ADuckCharacter* Duck = Cast<ADuckCharacter>(Hit.GetActor());
+
+
+		if (Duck)
+		{
+			Duck->TakeDamage(rifleDamage, FDamageEvent(), GetInstigatorController(), this);
+		}
+
+	}
+
+}
 void ADuckHuntersCharacter::OnFire()
 {
-	// try and fire a projectile
+	/*// try and fire a projectile
 	if (ProjectileClass != NULL)
 	{
 		UWorld* const World = GetWorld();
@@ -173,7 +258,7 @@ void ADuckHuntersCharacter::OnFire()
 		{
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
-	}
+	}*/
 }
 
 void ADuckHuntersCharacter::OnResetVR()
