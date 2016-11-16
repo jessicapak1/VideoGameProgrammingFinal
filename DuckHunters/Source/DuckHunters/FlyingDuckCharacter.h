@@ -16,6 +16,7 @@ class DUCKHUNTERS_API AFlyingDuckCharacter : public ADuckCharacter
 public:
 	AFlyingDuckCharacter();
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+    void DestroyDuck();
 
 private:
 

@@ -25,10 +25,16 @@ float AFlyingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Damage
 			// We're dead, don't allow further damage
 			bCanBeDamaged = false;
 			// TODO: Process death
+            DestroyDuck();
 			float duration = PlayAnimMontage(DeathAnim);
 			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckCharacter::DestroyDuck, duration - 0.25f, true);
-			GetController()->UnPossess();
+			//GetController()->UnPossess();
 		}
 	}
 	return ActualDamage;
+}
+
+void AFlyingDuckCharacter::DestroyDuck()
+{
+    this->Destroy();
 }

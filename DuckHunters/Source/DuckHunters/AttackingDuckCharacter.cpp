@@ -39,7 +39,7 @@ float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Dam
             DestroyDuck();
 			float duration = PlayAnimMontage(DeathAnim);
 			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckCharacter::DestroyDuck, duration - 0.25f, true);
-			GetController()->UnPossess();
+			//GetController()->UnPossess();
 		}
 	}
 	return ActualDamage;

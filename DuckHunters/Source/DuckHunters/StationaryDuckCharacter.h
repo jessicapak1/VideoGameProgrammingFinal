@@ -17,7 +17,7 @@ public:
 	// Sets default values for this character's properties
 	AStationaryDuckCharacter();
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
-
+    void DestroyDuck();
 private:
 	
 	
