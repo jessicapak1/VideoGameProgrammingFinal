@@ -21,21 +21,20 @@ void ADuckCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	TArray<UStaticMeshComponent*> Components;
+	/*TArray<UStaticMeshComponent*> Components;
 	this->GetComponents<UStaticMeshComponent>(Components);
 	mStaticMeshComponent = Components[0];
 	mStaticMesh = mStaticMeshComponent->StaticMesh;
 	mStaticMeshComponent->bGenerateOverlapEvents = true;
-	mStaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ADuckCharacter::OnBeginOverlap);
-	//mStaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ADuckCharacter::OnBeginOverlap);
+	mStaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ADuckCharacter::OnBeginOverlap);*/
 }
 
-void ADuckCharacter::OnBeginOverlap(class UPrimitiveComponent* thisComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult)
+/*void ADuckCharacter::OnBeginOverlap(class UPrimitiveComponent* thisComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Red, "HIT");
 	OtherActor->TakeDamage(5, FDamageEvent(), GetInstigatorController(), this);
 		
-}
+}*/
 
 // Called every frame
 void ADuckCharacter::Tick( float DeltaTime )

@@ -5,6 +5,7 @@
 #include "AttackingDuckCharacter.h"
 #include "AttackingDuckAIController.h"
 #include <iostream>
+#include "Engine.h"
 
 AAttackingDuckCharacter::AAttackingDuckCharacter()
 {
@@ -13,6 +14,25 @@ AAttackingDuckCharacter::AAttackingDuckCharacter()
 	mDuckHealth = 40.0f;
 	mDuckDamage = 10.0f;
 	std::cout << "inside attack constructor " << std::endl;
+
+}
+
+void AAttackingDuckCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	TArray<USkeletalMeshComponent*> Components;
+	this->GetComponents<USkeletalMeshComponent>(Components);
+	mSkeletalMeshComponent = Components[0];
+	mSkeletalMesh = mSkeletalMeshComponent->SkeletalMesh;
+	mSkeletalMeshComponent->bGenerateOverlapEvents = true;
+	mSkeletalMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &AAttackingDuckCharacter::OnBeginOverlap);
+}
+
+void AAttackingDuckCharacter::OnBeginOverlap(class UPrimitiveComponent* thisComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Red, "HIT");
+	OtherActor->TakeDamage(5, FDamageEvent(), GetInstigatorController(), this);
 
 }
 
