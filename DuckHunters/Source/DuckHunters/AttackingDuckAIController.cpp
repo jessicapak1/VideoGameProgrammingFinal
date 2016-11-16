@@ -66,3 +66,8 @@ void AAttackingDuckAIController::ChasePlayer()
 		mCurrentState = AttackingDuckState::Chase;
 	}
 }
+
+void AttackingDuckAIController::DoAction()
+{
+    
+}

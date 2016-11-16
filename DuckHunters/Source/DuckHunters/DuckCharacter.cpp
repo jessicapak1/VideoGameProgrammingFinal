@@ -35,7 +35,7 @@ void ADuckCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompo
 	Super::SetupPlayerInputComponent(InputComponent);
 
 }
-/*
+
 float ADuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 {
 	float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
@@ -47,14 +47,15 @@ float ADuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent,
 		{
 			// We're dead, don't allow further damage
 			bCanBeDamaged = false;
+            DestroyDuck();
 			// TODO: Process death
 			float duration = PlayAnimMontage(DeathAnim);
 			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckCharacter::DestroyDuck, duration - 0.25f, true);
-			GetController()->UnPossess();
+			//GetController()->UnPossess();
 		}
 	}
 	return ActualDamage;
-}*/
+}
 
 void ADuckCharacter::DestroyDuck()
 {

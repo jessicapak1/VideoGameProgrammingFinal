@@ -18,7 +18,7 @@ public:
 	void BeginPlay() override;
 	virtual void Tick(float deltaTime) override;
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
-
+    float TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 
 private:
 	enum class DuckState

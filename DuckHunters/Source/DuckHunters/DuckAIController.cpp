@@ -22,7 +22,7 @@ void ADuckAIController::Tick(float deltaTime)
 
 	if (mCurrentState == DuckState::Start)
 	{
-		
+        DoAction();
 	}
 	else if (mCurrentState == DuckState::Appear)
 	{
@@ -30,6 +30,7 @@ void ADuckAIController::Tick(float deltaTime)
 		ADuckCharacter* duckPawn = Cast<ADuckCharacter>(GetPawn()); // dwarf
 
 		// Fly Around... on a spline
+        DoAction();
 	}
 }
 
@@ -41,10 +42,13 @@ void ADuckAIController::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingRe
 		ADuckCharacter* duckPawn = Cast<ADuckCharacter>(GetPawn()); // dwarf
 		if (duckPawn != nullptr)
 		{
-			// ?? 
+			// ??
+            DoAction();
 		}
 	}
 }
+
+
 
 
 

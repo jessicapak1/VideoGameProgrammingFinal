@@ -20,6 +20,7 @@ public:
 	void StartAttack();
 	void StopAttack();
 	void AttackPlayer();
+    void DestroyDuck();
 	
 private:
 
