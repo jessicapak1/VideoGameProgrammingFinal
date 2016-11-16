@@ -10,6 +10,8 @@ class ADuckHuntersCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+	FTimerHandle WeaponTimer;
+
 	/** Pawn mesh: 1st person view (arms; seen only by self) */
 	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
 	class USkeletalMeshComponent* Mesh1P;
@@ -44,7 +46,17 @@ class ADuckHuntersCharacter : public ACharacter
 public:
 	ADuckHuntersCharacter();
 
+	void OnStartFire();
+
+	void OnStopFire(); 
+
 	virtual void BeginPlay();
+
+
+	void WeaponTrace();
+
+
+	UAudioComponent* PlayWeaponSound(class USoundCue* Sound);
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
@@ -76,6 +88,38 @@ public:
 
 protected:
 	
+	//Fire sound
+	UPROPERTY(EditDefaultsOnly, Category = Sound)
+		class USoundCue* FireLoopSound;
+	//Turn of fire sound
+	UPROPERTY(EditDefaultsOnly, Category = Sound)
+		class USoundCue* FireFinishSound;
+
+	UPROPERTY(Transient)
+		class UAudioComponent* FireAC;
+
+
+	//Muzzle effect
+	UPROPERTY(EditDefaultsOnly, Category = Effects)
+		UParticleSystem* MuzzleFx;
+
+	UPROPERTY(Transient)
+		class UParticleSystemComponent* Muzzle;
+
+
+	//fire rate
+	UPROPERTY(EditAnywhere)
+		float FireRate;
+
+	UPROPERTY(EditAnywhere)
+		float WeaponRange;
+
+	UPROPERTY(EditDefaultsOnly)
+		UParticleSystem* HitEffect;
+	UPROPERTY(EditAnywhere, Category = Damage)
+		float rifleDamage = 2.0f;
+
+
 	/** Fires a projectile. */
 	void OnFire();
 
