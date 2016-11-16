@@ -7,13 +7,25 @@ UCLASS(minimalapi)
 class ADuckHuntersGameMode : public AGameMode
 {
 	GENERATED_BODY()
-
-		void BeginPlay() override;
 public:
-	ADuckHuntersGameMode();
+		ADuckHuntersGameMode();
+		void BeginPlay() override;
+		void IncrementScore();
+		int GetScore() { return mScore; }
+		
+		void DecrementTime();
+		float GetTimeRemaining() { return mTimeRemaining; }
 
+		void PauseGame();
+		void UnpauseGame();
+		bool IsPaused() { return mPaused; }
+
+private: 
+
+	FTimerHandle mRoundTimer;
+	bool mPaused;
 	int mScore;
-	float mTimer;
+	float mTimeRemaining;
 
 };
 
