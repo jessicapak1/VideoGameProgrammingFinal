@@ -9,7 +9,7 @@ AFlyingDuckAIController::AFlyingDuckAIController()
 	mRange = 100.0f;
 }
 
-void AFlyingDuckAIController::DoAction()
+/*void AFlyingDuckAIController::DoAction()
 {
 
-}
+}*/

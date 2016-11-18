@@ -32,10 +32,10 @@ void ADuckCharacter::Tick( float DeltaTime )
 }
 
 // Called to bind functionality to input
+
 void ADuckCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
-
 }
 
 float ADuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)

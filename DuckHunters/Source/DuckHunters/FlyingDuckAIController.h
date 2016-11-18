@@ -15,7 +15,7 @@ class DUCKHUNTERS_API AFlyingDuckAIController : public ADuckAIController
 	
 public:
 	AFlyingDuckAIController();
-	void DoAction() override;
+	//void DoAction() override;
 
 private:
 

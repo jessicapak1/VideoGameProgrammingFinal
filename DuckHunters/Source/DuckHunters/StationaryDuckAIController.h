@@ -14,7 +14,7 @@ class DUCKHUNTERS_API AStationaryDuckAIController : public ADuckAIController
 	GENERATED_BODY()
 public:
 	AStationaryDuckAIController();
-	void DoAction() override;
+	// DoAction() override;
 
 private:
 
