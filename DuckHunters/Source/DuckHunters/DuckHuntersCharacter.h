@@ -127,10 +127,10 @@ protected:
 	void OnResetVR();
 
 	/** Handles moving forward/backward */
-	void MoveForward(float Val);
+//	void MoveForward(float Val);
 
 	/** Handles stafing movement, left and right */
-	void MoveRight(float Val);
+//	void MoveRight(float Val);
 
 	/**
 	 * Called via input to turn at a given rate.

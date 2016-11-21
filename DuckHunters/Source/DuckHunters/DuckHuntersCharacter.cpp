@@ -145,8 +145,8 @@ void ADuckHuntersCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ADuckHuntersCharacter::OnStartFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ADuckHuntersCharacter::OnStopFire); 
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ADuckHuntersCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ADuckHuntersCharacter::MoveRight);
+	//PlayerInputComponent->BindAxis("MoveForward", this, &ADuckHuntersCharacter::MoveForward);
+	//PlayerInputComponent->BindAxis("MoveRight", this, &ADuckHuntersCharacter::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
@@ -326,7 +326,7 @@ void ADuckHuntersCharacter::TouchUpdate(const ETouchIndex::Type FingerIndex, con
 	}
 }
 
-void ADuckHuntersCharacter::MoveForward(float Value)
+/*void ADuckHuntersCharacter::MoveForward(float Value)
 {
 	if (Value != 0.0f)
 	{
@@ -343,7 +343,7 @@ void ADuckHuntersCharacter::MoveRight(float Value)
 		AddMovementInput(GetActorRightVector(), Value);
 	}
 }
-
+*/
 void ADuckHuntersCharacter::TurnAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
