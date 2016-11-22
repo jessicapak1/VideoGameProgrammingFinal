@@ -142,8 +142,8 @@ void ADuckHuntersCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 
 
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ADuckHuntersCharacter::OnStartFire);
-	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ADuckHuntersCharacter::OnStopFire); 
+//	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ADuckHuntersCharacter::OnStartFire);
+//	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ADuckHuntersCharacter::OnStopFire);
 
 	//PlayerInputComponent->BindAxis("MoveForward", this, &ADuckHuntersCharacter::MoveForward);
 	//PlayerInputComponent->BindAxis("MoveRight", this, &ADuckHuntersCharacter::MoveRight);
@@ -151,11 +151,12 @@ void ADuckHuntersCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	/*PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ADuckHuntersCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ADuckHuntersCharacter::LookUpAtRate);
-}
+*/
+     }
 
 void ADuckHuntersCharacter::OnStartFire()
 {
