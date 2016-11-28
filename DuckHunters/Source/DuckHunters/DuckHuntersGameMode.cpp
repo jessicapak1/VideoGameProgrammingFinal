@@ -9,11 +9,16 @@
 ADuckHuntersGameMode::ADuckHuntersGameMode()
 	: Super()
 {
+	PlayerControllerClass = ADuckHuntersPlayerController::StaticClass();
+
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
-    DefaultPawnClass = ADuckHuntersCharacter::StaticClass();
-    PlayerControllerClass = ADuckHuntersPlayerController::StaticClass();
-    
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnObject(TEXT("/Game/Blueprints/BP_DuckHuntersCharacter"));
+
+	if (PlayerPawnObject.Class != NULL)
+	{
+		DefaultPawnClass = PlayerPawnObject.Class; 
+		//DefaultPawnClass = ADuckHuntersCharacter::StaticClass();
+	}
 
 	// use our custom HUD class
 	HUDClass = ADuckHuntersHUD::StaticClass();

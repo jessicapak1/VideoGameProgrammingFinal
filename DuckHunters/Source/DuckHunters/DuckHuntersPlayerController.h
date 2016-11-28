@@ -22,6 +22,21 @@ public:
     void MoveForward(float Value);
     void MoveRight(float Value); 
     
+	UFUNCTION()
+	void OnStartJump();
+
+	UFUNCTION()
+	void OnStopJump(); 
+	void TurnAtRate(float Rate); 
+	void LookUpRate(float Rate); 
+
+	void OnStartFire();
+	void OnStopFire(); 
+
+	float BaseTurnRate; 
+	float BaseLookUpRate;
+
+
     
 protected:
     
