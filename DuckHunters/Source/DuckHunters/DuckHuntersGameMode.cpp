@@ -1,7 +1,12 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 
 #include "DuckHunters.h"
-#include "Blueprint/UserWidget.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
+#include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+//#include "Blueprint/UserWidget.h"
 #include "Engine.h"
 #include "DuckHuntersGameMode.h"
 #include "DuckHuntersHUD.h"
@@ -30,7 +35,7 @@ ADuckHuntersGameMode::ADuckHuntersGameMode()
 void ADuckHuntersGameMode::BeginPlay() {
 	Super::BeginPlay();
 	if (wHUD) {
-		MyHUD = CreateWidget<UUserWidget>(this, wHUD);
+		MyHUD = CreateWidget<UUserWidget>(GetWorld(), wHUD);
 	}
 
 	if (MyHUD) {
