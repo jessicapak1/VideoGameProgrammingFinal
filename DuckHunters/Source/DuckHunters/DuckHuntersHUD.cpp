@@ -1,6 +1,12 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 
 #include "DuckHunters.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
+#include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "DuckHuntersHUD.h"
 #include "Engine/Canvas.h"
 #include "TextureResource.h"
@@ -9,8 +15,21 @@
 ADuckHuntersHUD::ADuckHuntersHUD()
 {
 	// Set the crosshair texture
-	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshiarTexObj(TEXT("/Game/FirstPerson/Textures/FirstPersonCrosshair"));
-	CrosshairTex = CrosshiarTexObj.Object;
+	static ConstructorHelpers::FClassFinder<UUserWidget> hudWidgetObj(TEXT("/Game/HUD/HUD"));
+	if (hudWidgetObj.Succeeded()) {
+		hudWidgetClass = hudWidgetObj.Class;
+	}
+	else {
+		hudWidgetClass = nullptr;
+	}
+}
+
+void ADuckHuntersHUD::BeginPlay() {
+	Super::BeginPlay();
+	if (hudWidgetClass) {
+		hudWidget = CreateWidget<UUserWidget>(this->GetOwningPlayerController(), this->hudWidgetClass);
+		hudWidget->AddToViewport();
+	}
 }
 
 

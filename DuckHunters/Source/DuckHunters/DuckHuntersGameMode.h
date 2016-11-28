@@ -20,13 +20,17 @@ public:
 		void UnpauseGame();
 		bool IsPaused() { return mPaused; }
 
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+		TSubclassOf<class UUserWidget> wHUD;
+
+		UUserWidget* MyHUD;
+
 private: 
 
 	FTimerHandle mRoundTimer;
 	bool mPaused;
 	int mScore;
 	float mTimeRemaining;
-
 };
 
 

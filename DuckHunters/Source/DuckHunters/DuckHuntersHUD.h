@@ -10,13 +10,14 @@ class ADuckHuntersHUD : public AHUD
 
 public:
 	ADuckHuntersHUD();
-
+	virtual void BeginPlay() override;
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;
 
 private:
 	/** Crosshair asset pointer */
 	class UTexture2D* CrosshairTex;
-
+	class UClass* hudWidgetClass;
+	class UUserWidget* hudWidget;
 };
 

@@ -1,6 +1,7 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 
 #include "DuckHunters.h"
+#include "Blueprint/UserWidget.h"
 #include "Engine.h"
 #include "DuckHuntersGameMode.h"
 #include "DuckHuntersHUD.h"
@@ -22,18 +23,27 @@ ADuckHuntersGameMode::ADuckHuntersGameMode()
 
 	// use our custom HUD class
 	HUDClass = ADuckHuntersHUD::StaticClass();
+	
 	mTimeRemaining = 60;
 }
 
 void ADuckHuntersGameMode::BeginPlay() {
 	Super::BeginPlay();
-	
+	if (wHUD) {
+		MyHUD = CreateWidget<UUserWidget>(this, wHUD);
+	}
+
+	if (MyHUD) {
+		MyHUD->AddToViewport();
+	}
+
 	mScore = 0;
 	GetWorldTimerManager().SetTimer(mRoundTimer, this, &ADuckHuntersGameMode::DecrementTime, 1.0f, true);
 }
 
 void ADuckHuntersGameMode::IncrementScore() {
 	mScore++;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::FromInt(mScore));
 }
 
 void ADuckHuntersGameMode::DecrementTime() {
