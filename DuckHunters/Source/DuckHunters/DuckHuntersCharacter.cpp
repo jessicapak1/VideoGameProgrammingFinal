@@ -32,16 +32,13 @@ ADuckHuntersCharacter::ADuckHuntersCharacter()
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
 
+	hunterHealth = MaxhunterHealth;
+
 	MyWeapon = nullptr; 
 }
 
 void ADuckHuntersCharacter::BeginPlay()
-{
-	// Call the base class  
-	Super::BeginPlay();
-
-	{
-		// Call base class BeginPlay
+{		// Call base class BeginPlay
 		Super::BeginPlay();
 		// Spawn the weapon, if one was specified
 		if (WeaponClass)
@@ -68,8 +65,12 @@ void ADuckHuntersCharacter::BeginPlay()
 				}
 			}
 		}
-	}
 
+		if (GetWorld()) 
+		{
+			mGameMode = (ADuckHuntersGameMode*)GetWorld()->GetAuthGameMode();
+		}
+	
 }
 
 

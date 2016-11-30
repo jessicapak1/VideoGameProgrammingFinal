@@ -52,3 +52,8 @@ void ADuckHuntersHUD::DrawHUD()
 	Canvas->DrawItem( TileItem );
 }
 
+void ADuckHuntersHUD::decrementAmmo() {
+	
+	
+}
+
