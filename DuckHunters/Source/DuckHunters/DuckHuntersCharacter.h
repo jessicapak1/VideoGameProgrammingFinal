@@ -44,9 +44,9 @@ public:
 
 protected:
 
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = Damage)
+	UPROPERTY(EditAnyWhere, Category = Damage)
 		float hunterHealth;
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = Damage)
+	UPROPERTY(EditAnyWhere, Category = Damage)
 		float MaxhunterHealth = 100.0f;
 	
 	UPROPERTY(EditAnyWhere, Category = Weapon)
