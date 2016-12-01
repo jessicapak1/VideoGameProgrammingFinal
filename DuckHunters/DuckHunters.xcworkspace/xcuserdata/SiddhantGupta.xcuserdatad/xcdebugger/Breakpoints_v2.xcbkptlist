@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Source/DuckHunters/Weapon.cpp"
+            timestampString = "502251852.814078"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "AWeapon::WeaponTrace()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AWeapon::WeaponTrace()"
+                  moduleName = "UE4Editor-DuckHunters-9294.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carlossanchez/final-project/DuckHunters/Source/DuckHunters/Weapon.cpp"
+                  timestampString = "502250031.97181"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "381">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AWeapon::WeaponTrace()"
+                  moduleName = "UE4Editor-DuckHunters-9489.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carlossanchez/final-project/DuckHunters/Source/DuckHunters/Weapon.cpp"
+                  timestampString = "502250170.7293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "381">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AWeapon::WeaponTrace()"
+                  moduleName = "UE4Editor-DuckHunters-8765.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carlossanchez/final-project/DuckHunters/Source/DuckHunters/Weapon.cpp"
+                  timestampString = "502250496.34572"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "333">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AWeapon::WeaponTrace()"
+                  moduleName = "UE4Editor-DuckHunters-4182.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carlossanchez/final-project/DuckHunters/Source/DuckHunters/Weapon.cpp"
+                  timestampString = "502250997.940297"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "270">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

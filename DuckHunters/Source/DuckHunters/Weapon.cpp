@@ -3,10 +3,12 @@
 #include "DuckHunters.h"
 #include "DuckHuntersCharacter.h"
 #include "DuckCharacter.h"
+#include "DuckHuntersPlayerController.h"
 
 #include "Weapon.h"
 #include "Sound/SoundCue.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 AWeapon::AWeapon()
@@ -46,7 +48,12 @@ void AWeapon::WeaponTrace()
 
 
 	// Calculate end position
-	FVector EndPos = StartPos + (Forward *WeaponRange);
+    FVector mousePos;
+    FVector mouseDir;
+    //auto PC = Cast<ADuckHuntersPlayerController>(MyOwner->GetController());
+    //PC->DeprojectMousePositionToWorld(mousePos, mouseDir);
+    mouseDir = MyOwner->GetFirstPersonCameraComponent()->GetForwardVector();
+	FVector EndPos = StartPos + (mouseDir *WeaponRange);
 
 	// Perform trace to retrieve hit info
 	FCollisionQueryParams TraceParams(WeaponFireTag, true, Instigator);
@@ -55,6 +62,7 @@ void AWeapon::WeaponTrace()
 	// This fires the ray and checks against all objects w/ collision
 	FHitResult Hit(ForceInit);
 	GetWorld()->LineTraceSingleByObjectType(Hit, StartPos, EndPos, FCollisionObjectQueryParams::AllObjects, TraceParams);
+    DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Red, true);
 	// Did this hit anything?
 	if (Hit.bBlockingHit)
 	{

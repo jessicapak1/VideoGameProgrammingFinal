@@ -40,6 +40,8 @@ ADuckHuntersCharacter::ADuckHuntersCharacter()
 void ADuckHuntersCharacter::BeginPlay()
 {		// Call base class BeginPlay
 		Super::BeginPlay();
+    
+    GetMesh()->AttachToComponent(FirstPersonCameraComponent, FAttachment  )
 		// Spawn the weapon, if one was specified
 		if (WeaponClass)
 		{
