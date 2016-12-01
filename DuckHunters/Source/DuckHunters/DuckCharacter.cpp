@@ -21,6 +21,7 @@ void ADuckCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	
 }
 
 

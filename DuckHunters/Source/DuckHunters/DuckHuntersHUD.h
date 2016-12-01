@@ -11,6 +11,11 @@ class ADuckHuntersHUD : public AHUD
 public:
 	ADuckHuntersHUD();
 	virtual void BeginPlay() override;
+
+	void decrementAmmo();
+	void decrementHealth();
+	void incrementScore(int points);
+	void decrementTime(); 
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;
 
@@ -19,5 +24,7 @@ private:
 	class UTexture2D* CrosshairTex;
 	class UClass* hudWidgetClass;
 	class UUserWidget* hudWidget;
+
+	
 };
 

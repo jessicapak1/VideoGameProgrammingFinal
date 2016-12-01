@@ -1,5 +1,6 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 #pragma once
+#include "DuckHuntersGameMode.h"
 #include "GameFramework/Character.h"
 #include "DuckHuntersCharacter.generated.h"
 
@@ -39,10 +40,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint32 bUsingMotionControllers : 1;
 
+	float getHealth() { return hunterHealth; }
+
 protected:
 
-	UPROPERTY(EditAnyWhere, Category = Damage)
-	float hunterHealth = 100.0f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = Damage)
+		float hunterHealth;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = Damage)
+		float MaxhunterHealth = 100.0f;
 	
 	UPROPERTY(EditAnyWhere, Category = Weapon)
 	TSubclassOf<class AWeapon> WeaponClass;
@@ -50,6 +55,8 @@ protected:
     UPROPERTY(EditAnyWhere, Category = Mesh)
     USkeletalMeshComponent *hunterMesh;
 
+	
+	ADuckHuntersGameMode* mGameMode;
 	
 	
 };

@@ -36,4 +36,5 @@ protected:
 		float mDuckDamage;
 	FTimerHandle mDeathTimer;
 
+
 };

@@ -53,3 +53,8 @@ void ADuckHuntersHUD::DrawHUD()
      */
 }
 
+void ADuckHuntersHUD::decrementAmmo() {
+	
+	
+}
+
