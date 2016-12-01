@@ -28,7 +28,8 @@ ADuckHuntersCharacter::ADuckHuntersCharacter()
 	FirstPersonCameraComponent->RelativeLocation = FVector(-39.56f, 1.75f, 64.f); // Position the camera
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
-
+    
+    hunterMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("HunterMesh"));
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
 
@@ -39,13 +40,16 @@ void ADuckHuntersCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+    
+   hunterMesh->AttachToComponent(FirstPersonCameraComponent, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
+    
 
-	{
-		// Call base class BeginPlay
-		Super::BeginPlay();
+    
 		// Spawn the weapon, if one was specified
-		if (WeaponClass)
+		/*if (WeaponClass)
 		{
+            
+            
 			UWorld* World = GetWorld();
 			if (World)
 			{
@@ -60,18 +64,20 @@ void ADuckHuntersCharacter::BeginPlay()
 				if (MyWeapon)
 				{
 					// This is attached to "WeaponPoint" which is defined in the skeleton
-					MyWeapon->AttachToComponent(GetMesh(),
-						FAttachmentTransformRules::KeepRelativeTransform,
-						TEXT("WeaponPoint"));
-
+					MyWeapon->AttachToComponent(hunterMesh,
+                                                FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
 					MyWeapon->SetMyOwner(this); 
 				}
-			}
-		}
+            
+			
+            }
+         
+                                                
 	}
-
+*/
 }
 
+    
 
 void ADuckHuntersCharacter::OnStartFire()
 {

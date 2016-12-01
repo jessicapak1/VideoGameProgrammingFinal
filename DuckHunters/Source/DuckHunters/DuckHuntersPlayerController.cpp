@@ -3,7 +3,7 @@
 #include "DuckHunters.h"
 #include "DuckHuntersPlayerController.h"
 #include "DuckHuntersCharacter.h"
-
+#include "DuckHuntersHUD.h"
 
 ADuckHuntersPlayerController::ADuckHuntersPlayerController()
 {
@@ -110,6 +110,8 @@ void ADuckHuntersPlayerController::OnStopFire()
 	ADuckHuntersCharacter *hunter = Cast<ADuckHuntersCharacter>(GetPawn()); 
 	if (hunter->IsDead() == false)
 	{
+        ADuckHuntersHUD * myHuntersHUD = Cast<ADuckHuntersHUD>(GetHUD());
+        
 		hunter->OnStopFire(); 
 	}
 }

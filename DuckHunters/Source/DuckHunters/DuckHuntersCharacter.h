@@ -45,7 +45,10 @@ protected:
 	float hunterHealth = 100.0f;
 	
 	UPROPERTY(EditAnyWhere, Category = Weapon)
-	TSubclassOf<class AWeapon> WeaponClass; 
+	TSubclassOf<class AWeapon> WeaponClass;
+    
+    UPROPERTY(EditAnyWhere, Category = Mesh)
+    USkeletalMeshComponent *hunterMesh;
 
 	
 	
