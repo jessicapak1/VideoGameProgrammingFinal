@@ -31,7 +31,7 @@ ADuckHuntersCharacter::ADuckHuntersCharacter()
 
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
-
+	MaxhunterHealth = 100.0f;
 	hunterHealth = MaxhunterHealth;
 
 	MyWeapon = nullptr; 
