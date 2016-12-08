@@ -12,13 +12,11 @@ UCLASS()
 class DUCKHUNTERS_API AStationaryDuckCharacter : public ADuckCharacter
 {
 	GENERATED_BODY()
-	
-public:
-	// Sets default values for this character's properties
-	AStationaryDuckCharacter();
-	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
-    void DestroyDuck();
+
 private:
+	void BeginPlay() override;
 	
-	
+	TSubobjectPtrDeprecated<UStaticMeshComponent> StaticMeshComponent; 
+
+	UStaticMesh * Chair1;
 };

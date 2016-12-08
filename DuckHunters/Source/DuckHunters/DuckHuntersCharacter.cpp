@@ -8,7 +8,9 @@
 #include "DuckHunters.h"
 #include "DuckCharacter.h"
 #include "DuckHuntersCharacter.h"
+#include "DuckHuntersPlayerController.h"
 #include "Weapon.h"
+#include "Engine.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -104,3 +106,35 @@ bool ADuckHuntersCharacter::IsDead()
 	}
 }
 
+float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,  "Player Take Damage");
+	float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+	if (ActualDamage > 0.0f)
+	{
+		hunterHealth -= ActualDamage;
+		int i = 2;
+		if (hunterHealth <= 0.0f)
+		{
+			// We're dead, don't allow further damage
+			mDead = true;
+			bCanBeDamaged = false;
+			// TODO: Process death
+			float duration = 1.0f;
+				//PlayAnimMontage(DeathAnim);
+			ADuckHuntersPlayerController* PC = Cast<ADuckHuntersPlayerController>(GetController());
+			if (PC)
+			{
+				PC->SetCinematicMode(true, true, true);
+			}
+			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckHuntersCharacter::DestroyPlayer, duration - 0.25f, true);
+			OnStopFire();
+		}
+	}
+	return ActualDamage;
+}
+
+void ADuckHuntersCharacter::DestroyPlayer()
+{
+	mGameMode->PauseGame();
+}

@@ -2,6 +2,7 @@
 
 #include "DuckHunters.h"
 #include "FlyingDuckCharacter.h"
+#include "Engine.h"
 #include "FlyingDuckAIController.h"
 
 
@@ -11,6 +12,14 @@ AFlyingDuckCharacter::AFlyingDuckCharacter()
 	AIControllerClass = AFlyingDuckAIController::StaticClass();
 	mDuckHealth = 30.0f;
 	mDuckDamage = 0.0f;
+}
+
+void AFlyingDuckCharacter::BeginPlay()
+{
+	TArray<UStaticMeshComponent*> components;
+	this->GetComponents<UStaticMeshComponent>(components);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Number of components");
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::FromInt(components.Num()));
 }
 
 float AFlyingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)

@@ -47,7 +47,9 @@ float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Dam
 
 void AAttackingDuckCharacter::StartAttack()
 {
-	float duration = PlayAnimMontage(AttackAnim);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Duck Attack");
+	float duration = 1.0;
+		//PlayAnimMontage(AttackAnim);
 	GetWorldTimerManager().SetTimer(mAttackTimer, this, &AAttackingDuckCharacter::AttackPlayer, duration, true);
 }
 
@@ -60,6 +62,7 @@ void AAttackingDuckCharacter::StopAttack()
 
 void AAttackingDuckCharacter::AttackPlayer()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Attack Player");
 	ADuckHuntersCharacter* player = Cast<ADuckHuntersCharacter>(UGameplayStatics::GetPlayerPawn(this, 0)); // player
 	if (player != nullptr)
 	{

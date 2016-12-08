@@ -2,6 +2,10 @@
 
 #pragma once
 
+#include "AttackingDuckCharacter.h"
+#include "DuckCharacter.h"
+#include "StationaryDuckCharacter.h"
+#include "FlyingDuckCharacter.h"
 #include "GameFramework/Actor.h"
 #include "SpawnManager.generated.h"
 
@@ -24,8 +28,14 @@ public:
 private: 
 	UPROPERTY(EditAnywhere)
 		TArray<class ATargetPoint*> SpawnPoints;
+
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<ACharacter> CharacterClass;
+		TSubclassOf <class AAttackingDuckCharacter> AttackingDuckCharacterClass;
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class AFlyingDuckCharacter> FlyingDuckCharacterClass;
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class AStationaryDuckCharacter> StationaryDuckCharacterClass;
+
 	UPROPERTY(EditAnywhere)
 		float SpawnTime;
 	FTimerHandle mSpawnTimer;

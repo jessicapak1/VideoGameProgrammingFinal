@@ -41,7 +41,8 @@ public:
 	uint32 bUsingMotionControllers : 1;
 
 	float getHealth() { return hunterHealth; }
-
+	float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser);
+	void ADuckHuntersCharacter::DestroyPlayer();
 protected:
 
 	UPROPERTY(EditAnyWhere, Category = Damage)
@@ -49,13 +50,16 @@ protected:
 	UPROPERTY(EditAnyWhere, Category = Damage)
 		float MaxhunterHealth = 100.0f;
 	
+	UPROPERTY(EditDefaultsOnly)
+		class UAnimMontage* DeathAnim;
+	FTimerHandle mDeathTimer;
 	UPROPERTY(EditAnyWhere, Category = Weapon)
 	TSubclassOf<class AWeapon> WeaponClass;
     
     UPROPERTY(EditAnyWhere, Category = Mesh)
     USkeletalMeshComponent *hunterMesh;
 
-	
+	bool mDead;
 	ADuckHuntersGameMode* mGameMode;
 	
 	
