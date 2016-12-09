@@ -48,8 +48,7 @@ float AAttackingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Dam
 void AAttackingDuckCharacter::StartAttack()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Duck Attack");
-	float duration = 1.0;
-		//PlayAnimMontage(AttackAnim);
+	float duration = PlayAnimMontage(AttackAnim);
 	GetWorldTimerManager().SetTimer(mAttackTimer, this, &AAttackingDuckCharacter::AttackPlayer, duration, true);
 }
 

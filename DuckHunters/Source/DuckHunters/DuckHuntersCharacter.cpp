@@ -113,21 +113,24 @@ float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & Damag
 	if (ActualDamage > 0.0f)
 	{
 		hunterHealth -= ActualDamage;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, "Health");
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::FromInt(hunterHealth));
 		int i = 2;
 		if (hunterHealth <= 0.0f)
 		{
 			// We're dead, don't allow further damage
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, "Dead");
+
 			mDead = true;
 			bCanBeDamaged = false;
 			// TODO: Process death
-			float duration = 1.0f;
-				//PlayAnimMontage(DeathAnim);
+			float duration = PlayAnimMontage(DeathAnim);
 			ADuckHuntersPlayerController* PC = Cast<ADuckHuntersPlayerController>(GetController());
 			if (PC)
 			{
 				PC->SetCinematicMode(true, true, true);
 			}
-			GetWorldTimerManager().SetTimer(mDeathTimer, this, &ADuckHuntersCharacter::DestroyPlayer, duration - 0.25f, true);
+			GetWorldTimerManager().SetTimer(mDeathTimer2, this, &ADuckHuntersCharacter::DestroyPlayer, duration, true);
 			OnStopFire();
 		}
 	}
@@ -136,5 +139,7 @@ float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & Damag
 
 void ADuckHuntersCharacter::DestroyPlayer()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, "Paused Game");
 	mGameMode->PauseGame();
+
 }

@@ -51,8 +51,9 @@ protected:
 		float MaxhunterHealth = 100.0f;
 	
 	UPROPERTY(EditDefaultsOnly)
-		class UAnimMontage* DeathAnim;
-	FTimerHandle mDeathTimer;
+	class UAnimMontage* DeathAnim;
+	
+	FTimerHandle mDeathTimer2;
 	UPROPERTY(EditAnyWhere, Category = Weapon)
 	TSubclassOf<class AWeapon> WeaponClass;
     
