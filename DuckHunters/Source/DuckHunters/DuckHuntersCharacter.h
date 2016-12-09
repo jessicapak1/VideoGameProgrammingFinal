@@ -41,14 +41,22 @@ public:
 	uint32 bUsingMotionControllers : 1;
 
 	float getHealth() { return hunterHealth; }
-	float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser);
-	void ADuckHuntersCharacter::DestroyPlayer();
+	float TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser) override; 
+	void DestroyPlayer();
+
+
+	void incrementScore(float points); 
+
+
 protected:
 
 	UPROPERTY(EditAnyWhere, Category = Damage)
 		float hunterHealth;
 	UPROPERTY(EditAnyWhere, Category = Damage)
 		float MaxhunterHealth = 100.0f;
+
+	UPROPERTY(EditAnyWhere, Category = Score)
+		float hunterScore;
 	
 	UPROPERTY(EditDefaultsOnly)
 	class UAnimMontage* DeathAnim;

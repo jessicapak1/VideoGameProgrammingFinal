@@ -71,5 +71,7 @@ void AAttackingDuckCharacter::AttackPlayer()
 
 void AAttackingDuckCharacter::DestroyDuck()
 {
-    this->Destroy();
+	ADuckHuntersCharacter* player = Cast<ADuckHuntersCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	player->incrementScore(20); 
+   this->Destroy();
 }

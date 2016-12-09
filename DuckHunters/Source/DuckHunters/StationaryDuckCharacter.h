@@ -13,8 +13,14 @@ class DUCKHUNTERS_API AStationaryDuckCharacter : public ADuckCharacter
 {
 	GENERATED_BODY()
 
-private:
+
+public:
 	void BeginPlay() override;
+	void DestroyDuck();
+
+
+	float AStationaryDuckCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser) override; 
+private:
 	
 	TSubobjectPtrDeprecated<UStaticMeshComponent> StaticMeshComponent; 
 

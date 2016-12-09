@@ -106,6 +106,12 @@ bool ADuckHuntersCharacter::IsDead()
 	}
 }
 
+
+void ADuckHuntersCharacter::incrementScore(float points)
+{
+	hunterScore += points; 
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::FromInt(points));
+}
 float ADuckHuntersCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,  "Player Take Damage");
@@ -143,3 +149,4 @@ void ADuckHuntersCharacter::DestroyPlayer()
 	mGameMode->PauseGame();
 
 }
+

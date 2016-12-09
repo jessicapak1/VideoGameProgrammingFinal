@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "DuckHunters.h"
+#include "DuckHuntersCharacter.h"
 #include "FlyingDuckCharacter.h"
 #include "Engine.h"
 #include "FlyingDuckAIController.h"
@@ -45,5 +46,7 @@ float AFlyingDuckCharacter::TakeDamage(float Damage, FDamageEvent const & Damage
 
 void AFlyingDuckCharacter::DestroyDuck()
 {
+	ADuckHuntersCharacter* player = Cast<ADuckHuntersCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	player->incrementScore(15);
     this->Destroy();
 }

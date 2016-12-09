@@ -50,10 +50,12 @@ void AWeapon::WeaponTrace()
 	// Calculate end position
     FVector mousePos;
     FVector mouseDir;
+
+	
     //auto PC = Cast<ADuckHuntersPlayerController>(MyOwner->GetController());
     //PC->DeprojectMousePositionToWorld(mousePos, mouseDir);
     mouseDir = MyOwner->GetFirstPersonCameraComponent()->GetForwardVector();
-	FVector EndPos = StartPos + (mouseDir *WeaponRange);
+	FVector EndPos = StartPos + (mouseDir*WeaponRange);
 
 	// Perform trace to retrieve hit info
 	FCollisionQueryParams TraceParams(WeaponFireTag, true, Instigator);
@@ -62,7 +64,7 @@ void AWeapon::WeaponTrace()
 	// This fires the ray and checks against all objects w/ collision
 	FHitResult Hit(ForceInit);
 	GetWorld()->LineTraceSingleByObjectType(Hit, StartPos, EndPos, FCollisionObjectQueryParams::AllObjects, TraceParams);
-    DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Red, true);
+	 DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Red, true);
 	// Did this hit anything?
 	if (Hit.bBlockingHit)
 	{
